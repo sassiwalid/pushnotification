@@ -41,13 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFUser.enableAutomaticUser()
         // config Parse Project
         let config  = ParseClientConfiguration { (ParseMutableClientConfiguration) in
-            ParseMutableClientConfiguration.applicationId = "pushnotif123ghhgdf123"
-            ParseMutableClientConfiguration.clientKey = "pushnotifKeyfsdfsd(§ç!"
-            ParseMutableClientConfiguration.server = "http://pushnotif.herokuapp.com/parse"
+            ParseMutableClientConfiguration.applicationId = "pushnotification123ghhgdf123"
+            ParseMutableClientConfiguration.clientKey = "pushnotificationKeyfsdfsdf23(§ç!"
+            ParseMutableClientConfiguration.server = "http://pushnotificationsofts.herokuapp.com/parse"
         }
         //initialize Parse with this Config
         Parse.initialize(with: config)
-        
+        // end
         let defaultACL = PFACL();
 
         // If you would like all objects to be private by default, remove this line.
