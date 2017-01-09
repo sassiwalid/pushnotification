@@ -14,8 +14,15 @@ class signInVC: UIViewController {
     @IBOutlet weak var passwdTxt: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // hide keyboard
+        let hidekeyborad = UITapGestureRecognizer(target: self, action: #selector(signInVC.hidekeyboradFn))
+        hidekeyborad.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(hidekeyborad)
+        
         // Do any additional setup after loading the view.
+    }
+    func hidekeyboradFn(){
+        self.view.endEditing(true)
     }
     @IBAction func signInBtClick(_ sender: Any) {
         PFUser.logInWithUsername(inBackground: loginTxt.text!, password: passwdTxt.text!){(success,error) in
