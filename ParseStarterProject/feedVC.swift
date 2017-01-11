@@ -89,5 +89,16 @@ class feedVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
     
   }
  
+  @IBAction func logOutBtnClicked(_ sender: UIBarButtonItem) {
+    PFUser.logOutInBackground { (error) in
+      if error != nil {
+         self.showalert(error: error! as NSError)
+      }else{
+        let signInController = self.storyboard?.instantiateViewController(withIdentifier: "signin") as! signInVC
+       let delegate = UIApplication.shared.delegate as! AppDelegate
+        delegate.window?.rootViewController = signInController
+      }
+    }
+  }
   
 }
