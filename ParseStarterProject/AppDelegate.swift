@@ -135,4 +135,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
     //     return FBAppCall.handleOpenURL(url, sourceApplication:sourceApplication, session:PFFacebookUtils.session())
     // }
+  func remember(){
+    let user : String? = UserDefaults.standard.string(forKey:"userinfo")
+    if user != nil {
+      let board : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+      let tabBar = board.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+      window?.rootViewController = tabBar
+      
+    }
+  }
 }
