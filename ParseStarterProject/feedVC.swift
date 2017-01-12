@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import OneSignal
 class feedVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
   // variables and outlets
   @IBOutlet weak var tableView: UITableView!
@@ -15,13 +16,21 @@ class feedVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
   var postcommentArray = [String]()
   var postImageArray = [PFFile]()
   var postUUIDArray = [String]()
-  
+  var playerID = ""
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.dataSource = self
     tableView.delegate = self
     getDataFromParse()
-     }
+    OneSignal.idsAvailable { (userID, pushToken) in
+      if userID != nil {
+        self.playerID = userID!
+      }
+    }
+    let user = PFUser.current()
+    user?["playerID"] = self.playerID
+    user?.saveEventually()
+}
   override func viewWillAppear(_ animated: Bool) {
     // receive local notification from upladVC to reload data
     NotificationCenter.default.addObserver(self, selector: #selector(feedVC.updateData(_:)), name: NSNotification.Name(rawValue:"pictureAdded"), object: nil)
@@ -94,6 +103,9 @@ class feedVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
       if error != nil {
          self.showalert(error: error! as NSError)
       }else{
+        // remove userdefault info from cash
+        UserDefaults.standard.removeObject(forKey: "userinfo")
+        UserDefaults.standard.synchronize()
         let signInController = self.storyboard?.instantiateViewController(withIdentifier: "signin") as! signInVC
        let delegate = UIApplication.shared.delegate as! AppDelegate
         delegate.window?.rootViewController = signInController

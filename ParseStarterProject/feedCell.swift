@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import OneSignal
 class feedCell: UITableViewCell {
     // variables and outlets
     @IBOutlet weak var feedImage: UIImageView!
@@ -16,6 +17,8 @@ class feedCell: UITableViewCell {
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var uiidlabel: UILabel!
+  
+    var playerIDArray = [String]()
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,7 +32,23 @@ class feedCell: UITableViewCell {
       if error != nil {
         print(error?.localizedDescription)
       }else {
-        print("post liked successfully")
+        let query = PFQuery(className: "_User")
+        query.whereKey("username", equalTo: self.uiidlabel!.text!)
+        //remove old player id
+        self.playerIDArray.removeAll(keepingCapacity: false)
+        query.findObjectsInBackground(block: { (objects, error) in
+          if error != nil {
+            print(error?.localizedDescription)
+          }else{
+            for object in objects!{
+              self.playerIDArray.append(object.object(forKey: "playerID") as! String)
+              // send push notification now
+               OneSignal.postNotification(["contents" : ["en": "\(PFUser.current()!.username!) has liked your post"],"include_player_ids":["\(self.playerIDArray.last)"]])
+            }
+          }
+        })
+       
+        
       }
     }
   }

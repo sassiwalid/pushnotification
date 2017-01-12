@@ -8,3 +8,4 @@ pod ‘Parse’
   # Pods for ParseStarterProject-Swift
 
 end
+pod 'OneSignal'

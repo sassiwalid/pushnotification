@@ -279,8 +279,8 @@
                             <constraint firstItem="wib-Xm-mVj" firstAttribute="leading" secondItem="xpK-iZ-Tof" secondAttribute="leading" id="pYr-nd-lyV"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Upload" id="SFx-Ok-1DL">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="1" vertical="-7"/>
+                    <tabBarItem key="tabBarItem" title="Upload" image="upload.png" id="SFx-Ok-1DL">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="1" vertical="0.0"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="textField" destination="Ojq-GF-GPc" id="NyB-Wi-9v9"/>
@@ -301,7 +301,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.16115171754066035" green="0.075932659521330645" blue="0.63370304404145084" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="o0V-lu-Cg1" kind="relationship" relationship="viewControllers" id="PCk-pL-l5L"/>
@@ -316,8 +316,8 @@
         <scene sceneID="xzE-LO-8li">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ye4-bU-WF5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" id="VVI-V6-jEW">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="1" vertical="-7"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="home.png" id="VVI-V6-jEW">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="1" vertical="1"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Ey-Ki-VqF">
@@ -336,5 +336,7 @@
     </scenes>
     <resources>
         <image name="background.png" width="192" height="164"/>
+        <image name="home.png" width="34" height="52"/>
+        <image name="upload.png" width="37" height="30"/>
     </resources>
 </document>
